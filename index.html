@@ -239,6 +239,18 @@
   .totop{position:fixed;right:22px;bottom:22px;width:46px;height:46px;border-radius:50%;background:var(--wine);color:var(--paper);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(12px);transition:all .4s;z-index:99;box-shadow:0 12px 26px -12px rgba(0,0,0,.55)}
   .totop.show{opacity:1;visibility:visible;transform:none}
   .totop:hover{background:var(--bordeaux-deep)}
+  .foot-bottom a{color:rgba(251,248,242,.72);text-decoration:underline;text-underline-offset:3px;transition:color .3s}
+  .foot-bottom a:hover{color:var(--gold)}
+  .legal-modal{position:fixed;inset:0;z-index:200;display:none;background:rgba(27,24,19,.55);backdrop-filter:blur(4px);overflow-y:auto;padding:60px 18px}
+  .legal-modal.open{display:block}
+  .legal-box{background:var(--paper);max-width:760px;margin:0 auto;border-radius:8px;padding:48px clamp(22px,5vw,56px);position:relative;box-shadow:0 40px 90px -30px rgba(0,0,0,.55)}
+  .legal-box h2{font-family:var(--serif);font-weight:400;font-size:1.9rem;margin-bottom:6px}
+  .legal-box h3{font-family:var(--serif);font-weight:500;font-size:1.08rem;margin:26px 0 6px}
+  .legal-box p,.legal-box li{color:var(--ink-soft);font-weight:300;font-size:.95rem;line-height:1.7;margin-bottom:10px}
+  .legal-box ul{margin:0 0 10px 20px}
+  .legal-box .muted{margin-top:24px;font-size:.84rem;color:var(--wine);border-top:1px solid var(--line);padding-top:16px}
+  .legal-close{position:absolute;top:16px;right:20px;background:none;border:none;font-size:1.8rem;color:var(--ink-soft);cursor:pointer;line-height:1}
+  .legal-close:hover{color:var(--wine)}
 </style>
 </head>
 <body>
@@ -559,10 +571,63 @@
     </div>
     <div class="foot-bottom">
       <span>© 2025 Dr. Marianowicz. Alle Rechte vorbehalten.</span>
-      <span>Impressum · Datenschutz</span>
+      <span><a href="#" onclick="openLegal('impressum-modal');return false;">Impressum</a> · <a href="#" onclick="openLegal('datenschutz-modal');return false;">Datenschutz</a></span>
     </div>
   </div>
 </footer>
+
+<div class="legal-modal" id="impressum-modal">
+  <div class="legal-box">
+    <button class="legal-close" onclick="closeLegal()" aria-label="Schließen">×</button>
+    <h2>Impressum</h2>
+    <h3>Angaben gemäß § 5 DDG</h3>
+    <p>Orthowiss GmbH<br>Hauptstraße 33<br>85579 Neubiberg<br>Deutschland</p>
+    <h3>Vertreten durch</h3>
+    <p>Geschäftsführer: [Vor- und Nachname]</p>
+    <h3>Kontakt</h3>
+    <p>Telefon: +49 (0)89 13 07 25 116<br>E-Mail: [E-Mail-Adresse eintragen]</p>
+    <h3>Registereintrag</h3>
+    <p>Eintragung im Handelsregister.<br>Registergericht: [Amtsgericht, z. B. München]<br>Registernummer: [HRB-Nummer]</p>
+    <h3>Umsatzsteuer-ID</h3>
+    <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: [USt-IdNr.]</p>
+    <h3>Berufsrechtliche Angaben</h3>
+    <p>Berufsbezeichnung: Arzt (verliehen in der Bundesrepublik Deutschland)<br>Zuständige Ärztekammer: Bayerische Landesärztekammer (BLÄK)<br>Es gelten die berufsrechtlichen Regelungen der Berufsordnung für die Ärzte Bayerns sowie das Heilberufe-Kammergesetz (HKaG), einsehbar bei der Bayerischen Landesärztekammer (blaek.de).</p>
+    <h3>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
+    <p>[Vor- und Nachname], Anschrift wie oben.</p>
+    <h3>Verbraucherstreitbeilegung</h3>
+    <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+    <h3>Haftung für Inhalte und Links</h3>
+    <p>Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Für die Inhalte externer Links sind ausschließlich deren Betreiber verantwortlich; zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar.</p>
+    <p class="muted">Hinweis: Dies ist eine Vorlage. Bitte ergänzen Sie die markierten Felder und lassen Sie das Impressum vor Veröffentlichung rechtlich prüfen.</p>
+  </div>
+</div>
+
+<div class="legal-modal" id="datenschutz-modal">
+  <div class="legal-box">
+    <button class="legal-close" onclick="closeLegal()" aria-label="Schließen">×</button>
+    <h2>Datenschutzerklärung</h2>
+    <p>Der Schutz Ihrer personenbezogenen Daten ist uns wichtig. Nachfolgend informieren wir Sie gemäß der Datenschutz-Grundverordnung (DSGVO) über die Verarbeitung personenbezogener Daten auf dieser Website.</p>
+    <h3>1. Verantwortlicher</h3>
+    <p>Orthowiss GmbH, Hauptstraße 33, 85579 Neubiberg, Deutschland<br>Telefon: +49 (0)89 13 07 25 116<br>E-Mail: [E-Mail-Adresse]</p>
+    <h3>2. Zugriffsdaten / Server-Logfiles</h3>
+    <p>Beim Besuch dieser Website werden durch den Hosting-Anbieter automatisch Informationen in Server-Logfiles gespeichert (u. a. IP-Adresse, Datum und Uhrzeit, abgerufene Datei, übertragene Datenmenge, Browsertyp und Betriebssystem). Die Verarbeitung erfolgt zur Gewährleistung eines störungsfreien Betriebs und der Sicherheit auf Grundlage unseres berechtigten Interesses (Art. 6 Abs. 1 lit. f DSGVO).</p>
+    <h3>3. Schriftarten (Google Fonts)</h3>
+    <p>Diese Website nutzt zur einheitlichen Darstellung Schriftarten von Google Fonts. Dabei werden die Schriften von Servern der Google Ireland Ltd. geladen, wobei Ihre IP-Adresse an Google übertragen werden kann (Art. 6 Abs. 1 lit. f DSGVO). [Empfehlung: Schriften lokal einbinden, um eine Übertragung an Google zu vermeiden.]</p>
+    <h3>4. Kontaktaufnahme</h3>
+    <p>Wenn Sie uns per Telefon oder E-Mail kontaktieren, verarbeiten wir Ihre Angaben zur Bearbeitung der Anfrage (Art. 6 Abs. 1 lit. b bzw. f DSGVO). Die Daten werden gelöscht, sobald sie nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+    <h3>5. Externe Links und Dienste</h3>
+    <p>Diese Website verlinkt auf externe Angebote (u. a. die Online-Terminvergabe von Dr. Flex, YouTube und LinkedIn). Beim Aufruf gelten die Datenschutzbestimmungen der jeweiligen Anbieter. Eine Einbettung mit automatischer Datenübertragung findet auf dieser Seite nicht statt.</p>
+    <h3>6. Online-Sprechstunde</h3>
+    <p>Die Online-Sprechstunde wird über einen externen Dienstleister abgewickelt. Die Verarbeitung Ihrer Gesundheitsdaten erfolgt dort zum Zweck der Behandlung bzw. auf Grundlage Ihrer Einwilligung (Art. 9 Abs. 2 lit. h DSGVO) gemäß der Datenschutzerklärung des Anbieters.</p>
+    <h3>7. Ihre Rechte</h3>
+    <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch gegen die Verarbeitung. Wenden Sie sich dazu an die oben genannte Adresse.</p>
+    <h3>8. Beschwerderecht</h3>
+    <p>Sie haben das Recht, sich bei einer Aufsichtsbehörde zu beschweren – zuständig ist das Bayerische Landesamt für Datenschutzaufsicht (BayLDA), Ansbach.</p>
+    <h3>9. SSL-/TLS-Verschlüsselung</h3>
+    <p>Diese Seite nutzt aus Sicherheitsgründen eine SSL-/TLS-Verschlüsselung.</p>
+    <p class="muted">Hinweis: Dies ist eine Vorlage. Bitte ergänzen Sie die markierten Felder (u. a. Hosting-Anbieter, Anbieter der Online-Sprechstunde) und lassen Sie den Text vor Veröffentlichung rechtlich prüfen.</p>
+  </div>
+</div>
 
 <button class="totop" id="totop" aria-label="Nach oben"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
@@ -587,6 +652,10 @@
     t.classList.add('active');
     document.getElementById(t.dataset.target).classList.add('active');
   }));
+  function openLegal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
+  function closeLegal(){document.querySelectorAll('.legal-modal').forEach(m=>m.classList.remove('open'));document.body.style.overflow='';}
+  document.querySelectorAll('.legal-modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeLegal();}));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLegal();});
 </script>
 </body>
 </html>
